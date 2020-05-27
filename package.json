@@ -1,0 +1,16 @@
+{
+  "name": "apistore-analytics",
+  "version": "1.0.0",
+  "description": "Roll up of analytics from multi-tenant 3scale",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "express": "^4.17.1",
+    "moment": "^2.26.0"
+  }
+}
