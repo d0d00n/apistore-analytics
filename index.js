@@ -43,7 +43,7 @@ app.get("/", async (req, res) => {
                     let apidocs = anApidoc.api_doc;
                     let systemName = apidocs.system_name.substring(0, apidocs.system_name.length - 3);
                     let suffix = apidocs.system_name.substring(apidocs.system_name.length - 2, apidocs.system_name.length);
-                    if (suffix === "en" || suffix == "fr") {
+                    if ((suffix === "en" || suffix == "fr") && apidocs.published) {
                         if (systemNameMap.has(systemName + ';' + apidocs.service_id)) {
                             systemNameMap.set(systemName + ';' + apidocs.service_id, systemNameMap.get(systemName + ';' + apidocs.service_id) + 1);
                         }
