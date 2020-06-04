@@ -102,7 +102,13 @@ app.get("/", async (req, res) => {
         });
 
     });
-
+    console.log('total: '+ totalHits + ' for services:');
+    if (unpublished){
+        console.log('all');
+    }
+    else{
+        console.log(servicesToShow);
+    }
     res.json({ hits: totalHits });
 
 });
