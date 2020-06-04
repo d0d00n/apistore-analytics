@@ -98,6 +98,7 @@ app.get("/", async (req, res) => {
     await axios.all(analyticsPromises).then(function (results) {
         results.forEach(function (response) {
             // for now, just do total. we'll do something smarter another day
+            console.log('service id: '+response.request.path.split('/')[3] +' hits: '+response.data.total);
             totalHits += response.data.total;
         });
 
