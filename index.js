@@ -99,14 +99,16 @@ app.get("/", async (req, res) => {
     await axios.all(analyticsPromises).then(function (results) {
         results.forEach(function (response) {
             // for now, just do total. we'll do something smarter another day
-            console.log(response.request.connection._host + ';'+response.request.path.split('/')[3] +';'+response.data.total);
-            if (tenantTotals.has(response.request.connection._host)){
-                tenantTotals.set(response.request.connection._host,tenantTotals.get(response.request.connection._host)+response.data.total);
+            if (response.data.total > 0){
+                console.log(response.request.connection._host + ';'+response.request.path.split('/')[3] +';'+response.data.total);
+                if (tenantTotals.has(response.request.connection._host)){
+                    tenantTotals.set(response.request.connection._host,tenantTotals.get(response.request.connection._host)+response.data.total);
+                }
+                else{
+                    tenantTotals.set(response.request.connection._host,response.data.total);
+                }
+                totalHits += response.data.total;
             }
-            else{
-                tenantTotals.set(response.request.connection._host,response.data.total);
-            }
-            totalHits += response.data.total;
         });
 
     });
