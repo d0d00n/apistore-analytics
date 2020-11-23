@@ -2,13 +2,15 @@ const express = require('express');
 const axios = require('axios');
 
 var moment = require('moment');
-
+var cors = require('cors');
 
 const port = process.env.PORT || 8080;
 const domain = process.env.DOMAIN || 'api.canada.ca';
 const app = express();
 
 var tenants = process.env.TENANTS.split(' ');
+
+app.use(cors());
 
 app.get("/monitor", async (req,res) => {
     let startDate = req.query.startDate || moment().subtract(1,'days').format('YYYY-MM-DD');
